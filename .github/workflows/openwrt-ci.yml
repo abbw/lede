@@ -26,12 +26,14 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         make defconfig
-        make download -j8
+        # make download -j8
         find dl -size -1024c -exec rm -f {} \;
-        ./dl/large_file_list_gen.sh
-        ./dl/large_file_split.sh
-        git add -f dl/
-        ./dl/large_file_git_add.sh
+        cd dl
+        ls
+        ./large_file_list_gen.sh
+        ./large_file_split.sh
+        git add -f .
+        ./large_file_git_add.sh
 
     - name: Commit
       run: |
