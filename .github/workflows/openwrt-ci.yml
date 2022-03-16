@@ -27,11 +27,10 @@ jobs:
         # ./scripts/feeds install -a
         # make defconfig
         # make download -j8
-        cd dl
-        bash ./large_file_list_gen.sh
-        # $GITHUB_WORKSPACE/dl/large_file_split.sh
-        # git add -f .
-        # $GITHUB_WORKSPACE/dl/large_file_git_add.sh
+        ./dl/large_file_list_gen.sh
+        ./dl/large_file_split.sh
+        cd dl && git add -f . && ls
+        ./dl/large_file_git_add.sh
 
     - name: Commit
       run: |
