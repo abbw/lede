@@ -20,20 +20,20 @@ jobs:
 
     - name: 下载 dl 库
       run: |
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+        # sudo -E apt-get update
+        # sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
         # ./scripts/feeds update -a
         # ./scripts/feeds install -a
         # make defconfig
         # make download -j8
         find dl -size -1024c -exec rm -f {} \;
-        $GITHUB_WORKSPACE/large_file_list_gen.sh
-        $GITHUB_WORKSPACE/large_file_split.sh
+        $GITHUB_WORKSPACE/dl/large_file_list_gen.sh
+        $GITHUB_WORKSPACE/dl/large_file_split.sh
         cd $GITHUB_WORKSPACE/dl
         ls
         git add -f .
-        $GITHUB_WORKSPACE/large_file_git_add.sh
+        $GITHUB_WORKSPACE/dl/large_file_git_add.sh
 
     - name: Commit
       run: |
