@@ -10,7 +10,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     
     steps:
-    - name: Checkout
+    - name: 缓存仓库
       uses: actions/checkout@master
     
     - name: 更新 lede
@@ -30,17 +30,16 @@ jobs:
         cd dl
         bash ./large_file_list_gen.sh
         bash ./large_file_split.sh
-        ls
         git add -f .
         bash ./large_file_git_add.sh
 
-    - name: Commit
+    - name: 提交记录
       run: |
         git config --global user.email 1037886804@qq.com
         git config --global user.name 笨蛋海绵
         git commit -m 'Auto Update' -a
 
-    - name: Push
+    - name: 推送文件
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
