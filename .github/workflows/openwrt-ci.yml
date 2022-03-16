@@ -27,9 +27,11 @@ jobs:
         ./scripts/feeds install -a
         make defconfig
         make download -j8
-        bash ./dl/large_file_list_gen.sh
-        bash ./dl/large_file_split.sh
-        cd dl && git add -f . && ls
+        cd dl
+        bash ./large_file_list_gen.sh
+        bash ./large_file_split.sh
+        ls
+        git add -f .
         bash ./large_file_git_add.sh
 
     - name: Commit
