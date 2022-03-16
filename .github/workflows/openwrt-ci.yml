@@ -27,7 +27,6 @@ jobs:
         # ./scripts/feeds install -a
         # make defconfig
         # make download -j8
-        find dl -size -1024c -exec rm -f {} \;
         cd dl
         ./large_file_list_gen.sh
         # $GITHUB_WORKSPACE/dl/large_file_split.sh
